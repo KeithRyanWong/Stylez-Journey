@@ -16,25 +16,23 @@
   
   <!-- <script type="text/javascript" src="../assets/javascript/entry.js"></script> -->
 
-
+  <script src="https://splashportal.cloud4wi.com/myapps/v1/myapps-sdk.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
-  <p>Enter your email to experience magic</p>
-  <input type="text" class="text-input" name="email" placeholder="doersdoe@gmail.com">
-  <input type="submit" class="button" id="submit" value="Sign in">
+  <div class="main">
+    You're the <span id="customer-id"></span>
+  </div>
 
-
-  <script src="https://splashportal.cloud4wi.com/myapps/v1/myapps-sdk.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("submit").addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        
-        MYAPPS.goNext();
-      })
-    })
+  <script type="text/javascript">
+    $(document).ready(() => {
+      $.ajax({
+        url: "https://jsonplaceholder.typicode.com/users/1",
+        method: "GET",
+      }).then((data) => {
+        $("#customer-id").text(data.name);
+      });
+    });
   </script>
 </body>
 </html>
