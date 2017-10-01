@@ -22,10 +22,10 @@
 <body>
   <div class="main">
     <div>
-      Hello <span id="greeting"></span>
+      Welcome, <span id="greeting"></span>
     </div>
     <div>
-      Your unique ID is <span id="customer-id"></span>
+      Your unique ID is <span id="customer-id">Green Watermelon</span>
     </div>
   </div>
 
@@ -33,7 +33,6 @@
     $(document).ready(() => {
       const userInfo = [];
       getUserInfo(userInfo);
-      getUserID();
     });
 
     // const APIKey = "f708a3bb62b655ed4217a582bb01d0aa";
@@ -59,25 +58,17 @@
         let email = data.data.customer.email;
         userInfo.push(fName, lName, email);
 
-        $("#greeting").text(`${fName} ${lName}`);
+        $("#greeting").text(`${fName}`);
 
         // $.ajax({
         //   url: 
         // })
 
-        $("#customer-id").text();
+        // $("#customer-id").text();
 
       });
     }
 
-    function getUserID() {
-      $.ajax({
-        url: "https://jsonplaceholder.typicode.com/users/1",
-        method: "GET",
-      }).then((data) => {
-        $("#customer-id").text(data.name);
-      });
-    }
   </script>
 </body>
 </html>
