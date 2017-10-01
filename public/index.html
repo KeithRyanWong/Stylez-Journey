@@ -21,7 +21,12 @@
 </head>
 <body>
   <div class="main">
-    Hello <span id="customer-id"></span>
+    <div>
+      Hello <span id="greeting"></span>
+    </div>
+    <div>
+      Your unique ID is <span id="customer-id"></span>
+    </div>
   </div>
 
   <script type="text/javascript">
@@ -31,11 +36,11 @@
       getUserID();
     });
 
-    const APIKey = "f708a3bb62b655ed4217a582bb01d0aa";
-    const APISecret = "232c22e0229ac4b74605e00ff2f672d7";
+    // const APIKey = "f708a3bb62b655ed4217a582bb01d0aa";
+    // const APISecret = "232c22e0229ac4b74605e00ff2f672d7";
 
 
-    const APIURL = `https://api.cloud4wi.com/v2/users?deleted=false&showUsersDesc=true&limit=1000&offset=0&api_version=v2.0&api_key=${APIKEY}&api_secret=${APISecret}`
+    // const APIURL = `https://api.cloud4wi.com/v2/users?deleted=false&showUsersDesc=true&limit=1000&offset=0&api_version=v2.0&api_key=${APIKEY}&api_secret=${APISecret}`
 
     
 
@@ -53,6 +58,15 @@
         let lName = data.data.last_name;
         let email = data.data.email;
         userInfo.push(fName, lName, email);
+
+        $("#greeting").text(`${fName} ${lName}`);
+
+        // $.ajax({
+        //   url: 
+        // })
+
+        $("#customer-id").text();
+
       });
     }
 
