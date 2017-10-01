@@ -21,18 +21,49 @@
 </head>
 <body>
   <div class="main">
-    You're the <span id="customer-id"></span>
+    Hello <span id="customer-id"></span>
   </div>
 
   <script type="text/javascript">
     $(document).ready(() => {
+      const userInfo = [];
+      getUserInfo(userInfo);
+      getUserID();
+    });
+
+    const APIKey = "f708a3bb62b655ed4217a582bb01d0aa";
+    const APISecret = "232c22e0229ac4b74605e00ff2f672d7";
+
+
+    const APIURL = `https://api.cloud4wi.com/v2/users?deleted=false&showUsersDesc=true&limit=1000&offset=0&api_version=v2.0&api_key=${APIKEY}&api_secret=${APISecret}`
+
+    
+
+    function getUserInfo(userInfo) {
+
+      const SK = MYAPPS.getSk();
+      const VOLARE_URL = `https://volare.cloud4wi.com/controlpanel/1.0/bridge/sessions/${SK}`;
+
+      $.ajax({
+        url: VOLARE_URL,
+        method: "GET",
+      }).then((data) => {
+        console.log(data);
+        let fName = data.data.first_name;
+        let lName = data.data.last_name;
+        let email = data.data.email;
+        userInfo.push(fName, lName, email);
+      });
+    }
+
+    function getUserID() {
       $.ajax({
         url: "https://jsonplaceholder.typicode.com/users/1",
         method: "GET",
       }).then((data) => {
         $("#customer-id").text(data.name);
       });
-    });
+    }
   </script>
 </body>
 </html>
